@@ -230,6 +230,34 @@ insert_final_newline = true
 
 ## Aula 07 - Configurando Sequelize
 
+Estrutura final de pastas:
+```
+gobarber-server/
+├── src
+│   ├── app
+│   │   ├── controllers
+│   │   └── models
+│   ├── config
+│   │   └── database.js
+│   ├── database
+│   │   └── migrations
+│   ├── app.js
+│   ├── routes.js
+│   └── server.js
+├── .vscode
+│   └── launch.json
+├── .editorconfig
+├── .eslintrc.js
+├── .gitignore
+├── nodemon.json
+├── package.json
+├── package-lock.json
+├── .prettierrc
+├── README.md
+├── .sequelizerc
+```
+Instalação
+
 ```bash
 $ mkdir src/config
 $ touch src/config/database.js
