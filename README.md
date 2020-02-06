@@ -230,6 +230,9 @@ insert_final_newline = true
 
 ## Aula 07 - Configurando Sequelize
 
+- [Sequelize](https://www.npmjs.com/package/sequelize)
+
+
 Estrutura final de pastas:
 ```
 gobarber-server/
