@@ -55,7 +55,7 @@ Crie ```./nodemon.json```:
 ```
 Esse arquivo registra junto ao Nodemon que o node deverá ser executado junto com o ```sucrase/register``` para arquivos JS.
 
-Agora podemos inicializar a aplicação executando: 
+Agora podemos inicializar a aplicação executando:
 
 ```bash
 $ yarn nodemon src/server.js
@@ -101,42 +101,42 @@ Podemos criar scripts auxiliares agora dentro do ```./package.json```:
 $ yarn add eslint -D
 $ yarn eslint --init
 
-  ? How would you like to use ESLint? 
-    To check syntax only 
-    To check syntax and find problems 
-  ❯ To check syntax, find problems, and enforce code style 
-  
+  ? How would you like to use ESLint?
+    To check syntax only
+    To check syntax and find problems
+  ❯ To check syntax, find problems, and enforce code style
+
   ? What type of modules does your project use? (Use arrow keys)
-  ❯ JavaScript modules (import/export) 
-    CommonJS (require/exports) 
-    None of these 
-  
-  ? Which framework does your project use? 
-    React 
-    Vue.js 
-  ❯ None of these 
-  
+  ❯ JavaScript modules (import/export)
+    CommonJS (require/exports)
+    None of these
+
+  ? Which framework does your project use?
+    React
+    Vue.js
+  ❯ None of these
+
   ? Does your project use TypeScript? (y/N) N
-  
-  ? Where does your code run? 
+
+  ? Where does your code run?
    ◯ Browser
   ❯◉ Node
-  
+
   ? How would you like to define a style for your project? (Use arrow keys)
-  ❯ Use a popular style guide 
-    Answer questions about your style 
-    Inspect your JavaScript file(s) 
-  
+  ❯ Use a popular style guide
+    Answer questions about your style
+    Inspect your JavaScript file(s)
+
   ? Which style guide do you want to follow? (Use arrow keys)
-  ❯ Airbnb: https://github.com/airbnb/javascript 
-    Standard: https://github.com/standard/standard 
-    Google: https://github.com/google/eslint-config-google 
-  
+  ❯ Airbnb: https://github.com/airbnb/javascript
+    Standard: https://github.com/standard/standard
+    Google: https://github.com/google/eslint-config-google
+
   ? What format do you want your config file to be in? (Use arrow keys)
-  ❯ JavaScript 
-    YAML 
-    JSON 
-  
+  ❯ JavaScript
+    YAML
+    JSON
+
   ? Would you like to install them now with npm? (Y/n) Y
 
 $ yarn
@@ -228,3 +228,47 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 ```
 
+## Aula 07 - Configurando Sequelize
+
+```bash
+$ mkdir src/config
+$ touch src/config/database.js
+$ mkdir src/database
+$ mkdir src/database/migrations
+$ mkdir src/database/seeds
+$ mkdir src/app
+$ mkdir src/app/controllers
+$ mkdir src/app/models
+
+$ yarn add sequelize pg pg-hstore
+$ yarn add sequelize-cli -D
+```
+
+Crie o arquivo de configuração ```./.sequelizerc```:
+```js
+const { resolve } = require('path');
+
+module.exports = {
+  config: resolve(__dirname, 'src', 'config', 'database.js'),
+  'models-path': resolve(__dirname, 'src', 'app', 'models'),
+  'migrations-path': resolve(__dirname, 'src', 'database', 'migrations'),
+  'seeders-path': resolve(__dirname, 'src', 'database', 'seeds'),
+}
+```
+
+```./src/config/database.js```:
+```js
+module.exports = {
+  dialect: 'postgres',
+  host: 'localhost',
+  port: 5433,
+  username: 'postgres',
+  password: 'docker',
+  database: 'gobarber',
+  define: {
+    timestamps: true,
+    underscored: true,
+    underscoredAll: true,
+  },
+};
+```
