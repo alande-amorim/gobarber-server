@@ -4,6 +4,7 @@
 - Aula 4 - Configurando Docker
 - [Aula 6 - Padronização de Código](#aula-06---eslint,-prettier-&-editorconfig)
 - [Aula 7 - Configurando Sequelize](#aula-07---configurando-sequelize)
+- [Aula 8 - Migration de Usuário](#aula-08---migration-de-usuario)
 
 ## Aula 01 - configurando estrutura
 
@@ -303,3 +304,42 @@ module.exports = {
   },
 };
 ```
+## Aula 08 - Migration de Usuário
+ Após configurado o Sequelize, executamos:
+
+ ```bash
+$ yarn sequelize migration:create --name=create-users
+ ```
+ Esse comando irá criar um arquivo dentro do diretório de migrations (`./src/database/migrations/`) que definido no arquivo de configuração do Sequelize `./.sequelizerc`.
+
+ Dentro do método up definimos o schema da tabela que será criada. Ao final, executamos o comando `yarn sequelize db:migrate` que irá criar rodar todas as migrations que não foram executadas até aquele ponto.
+
+```
+             List of relations
+ Schema |     Name      | Type  |  Owner
+--------+---------------+-------+----------
+ public | SequelizeMeta | table | postgres
+ public | users         | table | postgres
+(2 rows)
+```
+
+```
+       Table "public.users"
+    Column     |           Type           | Collation | Nullable |              Default              | Storage  | Stats target | Description
+---------------+--------------------------+-----------+----------+-----------------------------------+----------+--------------+-------------
+ id            | integer                  |           | not null | nextval('users_id_seq'::regclass) | plain    |              |
+ name          | character varying(255)   |           | not null |                                   | extended |              |
+ email         | character varying(255)   |           | not null |                                   | extended |              |
+ password_hash | character varying(255)   |           | not null |                                   | extended |              |
+ provider      | boolean                  |           | not null | false                             | plain    |              |
+ created_at    | timestamp with time zone |           | not null |                                   | plain    |              |
+ updated_at    | timestamp with time zone |           | not null |                                   | plain    |              |
+Indexes:
+    "users_pkey" PRIMARY KEY, btree (id)
+    "users_email_key" UNIQUE CONSTRAINT, btree (email)
+Access method: heap
+
+```
+
+
+
