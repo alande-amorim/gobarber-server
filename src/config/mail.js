@@ -3,7 +3,7 @@ export default {
   port: 2525,
   secure: false,
   auth: {
-    user: 'd3e8166d28041c',
-    pass: '986e1a6e0ccda6',
+    user: 'b46ef315caf9da',
+    pass: '4ed56d4da9955f',
   },
 };
